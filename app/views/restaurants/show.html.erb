@@ -14,7 +14,14 @@
         <% @restaurant.reviews.each do |review| %>
           <li class="list-item">
           <div class="d-flex flex-column">
-            <i class="far fa-star pb-1"> <%= review.rating%></i>
+            <div>
+              <% review.rating.times do %>
+                <i class="fas fa-star pb-1"></i>
+              <% end %>
+              <% (5 - review.rating).times do %>
+                <i class="far fa-star"></i>
+              <% end %>
+            </div>
             <p><%= review.content %></p>
           </div>
           </li>
