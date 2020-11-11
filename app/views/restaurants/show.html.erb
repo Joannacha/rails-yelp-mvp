@@ -13,12 +13,21 @@
       <ul class="list-unstyled">
         <% @restaurant.reviews.each do |review| %>
           <li class="list-item">
-          <i class="far fa-star"></i> * <% review.rating%>
-          <%= review.content %>
+          <div class="d-flex flex-column">
+            <i class="far fa-star pb-1"> <%= review.rating%></i>
+            <p><%= review.content %></p>
+          </div>
           </li>
         <% end %>
       </ul>
     </div>
-    <%= link_to 'Add a review', new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+    <div class="container py-3">
+      <h5>Add your review below</h5>
+      <%= simple_form_for [ @restaurant, @review ] do |f| %>
+        <%= f.input :rating %>
+        <%= f.input :content %>
+        <%= f.submit "Add a review", class: "btn btn-primary" %>
+      <% end %>
+    </div>    
   </div>
 </div>
